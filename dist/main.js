@@ -1,12 +1,9 @@
 (function(modules) {
-  // modules: {  
-  //   "./src/index.js": `function(module, exports) {
-  //     eval(
-  //       "const add = (a, b) => a + b;\r\nconst sum = add(1, 2);\r\nconsole.log(sum);\n\n//# sourceURL=webpack:///./src/index.js?"
-  //     );
-  //   } }`
+  // webpackBootstrap
+  // The module cache
   var installedModules = {};
 
+  // The require function
   function __webpack_require__(moduleId) {
     // Check if module is in cache
     if (installedModules[moduleId]) {
@@ -34,8 +31,10 @@
     return module.exports;
   }
 
+  // expose the modules object (__webpack_modules__)
   __webpack_require__.m = modules;
 
+  // expose the module cache
   __webpack_require__.c = installedModules;
 
   // define getter function for harmony exports
@@ -92,6 +91,7 @@
     return getter;
   };
 
+  // Object.prototype.hasOwnProperty.call
   __webpack_require__.o = function(object, property) {
     return Object.prototype.hasOwnProperty.call(object, property);
   };
