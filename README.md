@@ -30,6 +30,8 @@ webpack loader 是用于编译源文件为目标文件，
 const babel = require('@babel/core');
 
 function loader(source, inputSourceMap) {
+  // 启用缓存 
+  this.cacheable();
   // 供 webpack 调用
   const options = {
     presets: ['@babel/preset-env'],
@@ -63,4 +65,52 @@ module.exports = loader;
         ]
     }
 }
+```
+
+### banner-loader
+
+为代码添加注释，表明代码版权，或者编写人，时间等信息
+
+**banner-loader.js**
+```js
+const babel = require('@babel/core');
+
+function loader(source, inputSourceMap) {
+  this.cacheable();
+  // 供 webpack 调用
+  const options = {
+    presets: ['@babel/preset-env'],
+    inputSourceMap,
+    sourceMap: true,
+    filename: this.request.split('!')[1].split('/').pop()
+  };
+  // this.request 数据格式
+  // E:\\0-前端\\00-框架\\webpack\\源码学习\\webpack-source-analysis\\loaders\\babel-loader.js!E:\\0-前端\\00-框架\\webpack\\源码学习\\webpack-source-analysis\\src\\index.js
+  let { code, map, ast }  = babel.transform(source, options);
+  return this.callback(null, code, map, ast);
+}
+
+module.exports = loader;
+```
+
+**bannder.js**
+```js
+/**
+ * Copyright: Xiangju
+ * Author: stella
+ * Date：new Date()
+ */
+```
+
+**webpack.config.js**
+```js
+
+```
+
+## Bug Records
+
+输入法全角和半角的切换
+
+```bash
+shift + 空格
 ```

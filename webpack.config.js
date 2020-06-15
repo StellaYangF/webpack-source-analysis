@@ -16,12 +16,21 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.js$/, use: 'babel-loader' }
+      { test: /\.js$/, use: [
+        {
+          loader: 'banner-loader',
+          options: {
+            filename: resolve('./loaders/banner.js'),
+          }
+        },
+        'babel-loader',
+      ] }
     ]
   },
   resolveLoader: {
     alias: {
       'babel-loader': resolve('./loaders/babel-loader'),
+      'banner-loader': resolve('./loaders/banner-loader'),
     },
     modules: [ resolve('./loaders', 'node_modules') ]
   },
