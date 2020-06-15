@@ -14,7 +14,17 @@ module.exports = {
     // library: 'libraryName',
     // libraryTarget: 'umd',
   },
-  module: {},
+  module: {
+    rules: [
+      { test: /\.js$/, use: 'babel-loader' }
+    ]
+  },
+  resolveLoader: {
+    alias: {
+      'babel-loader': resolve('./loaders/babel-loader'),
+    },
+    modules: [ resolve('./loaders', 'node_modules') ]
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: resolve('public/index.html'),
