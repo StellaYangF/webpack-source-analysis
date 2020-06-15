@@ -10,7 +10,7 @@ btn.addEventListener('click', e => {
 
   import(
     /* webpackChunkName: 'info' */
-    /* webpackPrefetch: true */
+    /* webpackMode: 'lazy' */
     './info').then(console.log);
 })
 // btn.addEventListener('click', e => {

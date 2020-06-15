@@ -355,3 +355,41 @@ export default {
 
 ## harmony 和谐模式 | 异步加载
 
+**title.js**
+```js
+```
+
+**index.js**
+```js
+```
+
+**title.hash.js** bundle
+```js
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([
+  ["title"],
+  { "./src/title.js": (function(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+      __webpack_require__.r(__webpack_exports__);
+      console.log('%c title prefetch', 'color: #fa9');
+
+      __webpack_exports__["default"] = ({
+        name: 'title_name',
+        age: 'title_age',
+      });
+    })
+  }
+]);
+```
+
+> Tip: 添加全局变量 `webpackJsonp` 数组，push 元素
+
+- [ chunkFilename ], { moduleId: callback(module, exports, __webpack_require__) }
+  - chunkFilename: 默认为数组下标，可运用 webpackMagicComment 魔法注释，添加代码块名字
+
+**魔法字符串的类型**
+- `webpackChunkName: "chunkName"` 异步加载代码块的名称
+- `webpackIgnore: true` 忽略该异步代码的打包，不会输出，原封不动的出现在入口文件中，没有解析
+- `webpackPrefetch: true` 启用预抓取功能，浏览器空闲时发起请求，不执行
+- `webpackPreload: true` 启用预加载，当前页面解析需要
+- `webpack`
+
