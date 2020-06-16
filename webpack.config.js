@@ -5,40 +5,27 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: {
-    login: resolve("src/index.js")
+    login: resolve("src/index.js"),
+    reg: resolve('src/reg.js'),
   },
-  devtool: 'none',
   output: {
     path: resolve('dist'),
-    filename: '[name].[chunkHash:8].js',
-    // library: 'libraryName',
-    // libraryTarget: 'umd',
+    filename: '[name].js',
   },
-  module: {
-    rules: [
-      { test: /\.js$/, use: [
-        {
-          loader: 'banner-loader',
-          options: {
-            filename: resolve('./loaders/banner.js'),
-          }
-        },
-        'babel-loader',
-      ] }
-    ]
-  },
-  resolveLoader: {
-    alias: {
-      'babel-loader': resolve('./loaders/babel-loader'),
-      'banner-loader': resolve('./loaders/banner-loader'),
-    },
-    modules: [ resolve('./loaders', 'node_modules') ]
+  devServer: {
+    contentBase: resolve('dist'),
+    host: 'localhost',
+    compress: true,
+    port: 8080,
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: resolve('public/index.html'),
       filename: 'index.html',
-      inject: 'body',
+      // inject: false, // 'body'
+      hash: true,
+      chunks: ['login', 'reg'],
+      chunksSortMode: 'manual',
     }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['**/*'],

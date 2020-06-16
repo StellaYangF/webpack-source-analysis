@@ -3,20 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <% for(var css in htmlWebpackPlugin.files.css) { %>
+    <link href='<%= htmlWebpackPlugin.files.css[css] %>' rel='stylesheet'>
+  <% } %>
   <title>Home</title>
 </head>
 <body>
   <button id='btn'>async import title</button>
-  <script>
-    // let body = document.body;
-    // body.addEventListener('click', e => {
-    //   console.log(e, 'body 冒泡');
-    // }, {
-    //   passive: true,
-    // })
-    // body.addEventListener('click', e => {
-    //   console.log(e, 'body 捕获');
-    // }, true)
-  </script>
+  <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+    <script src='<%= htmlWebpackPlugin.files.chunks[chunk].entry %>'></script>
+  <% } %>
 </body>
 </html>
