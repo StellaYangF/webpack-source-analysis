@@ -1,4 +1,8 @@
-// const title = require('./title');
+import './index.css';
+let logo = require('./assets/bzs_abouttext_img.png');
+let img = new Image;
+img.src = logo.default;
+document.body.appendChild(img);
 
 
 btn.addEventListener('click', e => {
@@ -13,10 +17,3 @@ btn.addEventListener('click', e => {
     /* webpackMode: 'lazy' */
     './info').then(console.log);
 })
-// btn.addEventListener('click', e => {
-//   console.log(e, '点击btn 捕获');
-//   import('./title').then(console.log);
-// }, true)
-// 
-
-// console.log(title);
