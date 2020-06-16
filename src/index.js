@@ -1,4 +1,6 @@
-import './index.css';
+// import './css/index.css';
+import './css/index.less';
+
 let logo = require('./assets/bzs_abouttext_img.png');
 let img = new Image;
 img.src = logo.default;

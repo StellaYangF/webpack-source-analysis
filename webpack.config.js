@@ -24,10 +24,14 @@ module.exports = {
   optimization: {
     minimizer: [ 
       new TerserWebpackPlugin({
-        
+        parallel: true,
+        // cache: true,
       }), 
-      new OptimizeCSSAssetsPlugin() ]
-    ,
+      new OptimizeCSSAssetsPlugin({
+        assetNameRegExp: /\.css$/g,
+        cssProcessor: require('cssnano'),
+      }) 
+    ],
   },
   module: {
     rules: [
@@ -35,6 +39,8 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 4096,
+          outputPath: 'images',
+          publicPath: '/images',
         }
       } ] }, {
         test: /\.css$/i,
@@ -43,15 +49,33 @@ module.exports = {
         use: [
           // 'style-loader',
           { loader: MiniCssExtractPlugin.loader },
-          'css-loader'
+          'css-loader', 'postcss-loader'
+        ]
+      }, {
+        test: /\.scss$/,
+        include: resolve('src'),
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          }, 'css-loader', 'sass-loader'
+        ]
+      }, {
+        test: /\.less$/,
+        include: resolve('src'),
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          }, 'css-loader', 'less-loader', 'postcss-loader'
         ]
       }
     ]
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name][hash:8].css',
-      chunkFilename: '[id].css',
+      // filename: '[name][hash:8].css',
+      // chunkFilename: '[id].css',
+      chunkFilename: 'css/[id].css',
+      filename: 'css/[name].[contentHash].css'
     }),
     new HtmlWebpackPlugin({
       template: resolve('public/index.html'),

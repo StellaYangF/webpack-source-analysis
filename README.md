@@ -129,8 +129,14 @@ module.exports = loader;
 
 ## Bug Records
 
-输入法全角和半角的切换
+- 输入法全角和半角的切换
 
 ```bash
 shift + 空格
+```
+
+-  Error: EPERM: operation not permitted, lstat
+
+```bash
+npm cache clean --force
 ```
