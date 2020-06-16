@@ -5,11 +5,12 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 module.exports = {
   entry: {
-    login: resolve("src/index.js"),
-    reg: resolve('src/reg.js'),
+    main: resolve("src/index.js"),
+    // reg: resolve('src/reg.js'),
   },
   output: {
     path: resolve('dist'),
@@ -35,6 +36,12 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.js(x?)$/,
+        use: {
+          loader: 'babel-loader',
+        }
+      },
       { test: /\.(png|jpg|jpeg|gif|svg)$/, use: [ {
         loader: 'url-loader',
         options: {
@@ -65,7 +72,7 @@ module.exports = {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-          }, 'css-loader', 'less-loader', 'postcss-loader'
+          }, 'css-loader','postcss-loader', 'less-loader'
         ]
       }
     ]
@@ -82,11 +89,12 @@ module.exports = {
       filename: 'index.html',
       hash: true,
       minify: true,
-      chunks: ['login', 'reg'],
-      chunksSortMode: 'manual',
+      // chunks: ['login', 'reg'],
+      // chunksSortMode: 'manual',
     }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['**/*'],
     }),
+    // new HardSourceWebpackPlugin(),
   ]
 };

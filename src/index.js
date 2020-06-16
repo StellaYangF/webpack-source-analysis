@@ -1,21 +1,7 @@
-// import './css/index.css';
 import './css/index.less';
+import './decorator.js';
 
-let logo = require('./assets/bzs_abouttext_img.png');
-let img = new Image;
-img.src = logo.default;
-document.body.appendChild(img);
+Promise.resolve('error').finally(() => console.log('finally'));
 
-
-btn.addEventListener('click', e => {
-  console.log(e, '点击btn');
-  import(
-    /* webpackChunkName: 'title' */
-    /* webpackPrefetch: true */
-    './title').then(console.log);
-
-  import(
-    /* webpackChunkName: 'info' */
-    /* webpackMode: 'lazy' */
-    './info').then(console.log);
-})
+const set = new Set([1,2,3,4,2,4]);
+console.log(set);
