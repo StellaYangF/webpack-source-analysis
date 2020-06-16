@@ -76,7 +76,7 @@ module.exports = loader;
 const babel = require('@babel/core');
 
 function loader(source, inputSourceMap) {
-  this.cacheable();
+  this.cacheable && this.cacheable();
   // 供 webpack 调用
   const options = {
     presets: ['@babel/preset-env'],
@@ -98,12 +98,32 @@ module.exports = loader;
 /**
  * Copyright: Xiangju
  * Author: stella
- * Date：new Date()
  */
 ```
 
 **webpack.config.js**
 ```js
+{
+ resolveLoader: {
+    alias: {
+      'babel-loader': resolve('./loaders/babel-loader'),
++     'banner-loader': resolve('./loaders/banner-loader'),
+    },
+  },
+  module: {
+    rules: [
+      { test: /\.js$/, use: [
+        {
+          loader: 'banner-loader',
++         options: {
++           filename: resolve('./loaders/banner.js'),
++         }
+        },
+        'babel-loader',
+      ] }
+    ]
+  },
+}
 
 ```
 
