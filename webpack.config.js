@@ -111,4 +111,5 @@ module.exports = {
     }),
     // new HardSourceWebpackPlugin(),
   ],
+  // devtool: 'none',
 };

@@ -19,9 +19,36 @@
 
 - { entryChunkName: string| [string] } 对象下可以有多个入口名，对应入口文件
 
+## 调试打包后代码
+
+代码打包会存在一定的合并、压缩等操作，为方便调试打包后代码，webpack 提供 `devtool` ，按需配置即可。[参考](https://webpack.js.org/configuration/devtool/)
+
+### 解决
+
+`sourcemap` 源码映射文件，以便 debug 时解决开发代码与实际运行代码不一致问题
+
+### 总体分类
+
+官网给出的类型很多（共26种），总的来说可分为：eval, source-map, cheap, module, inline。
+
+**eval：** 使用eval包裹模块代码
+
+**source-map：** 产生.map文件
+
+**cheap：** 不包含列信息（关于列信息的解释下面会有详细介绍)也不包含loader的sourcemap
+
+**module：** 包含loader的sourcemap（比如jsx to js ，babel的sourcemap）,否则无法定义源文件
+
+**inline：** 将.map作为DataURI嵌入，不单独生成.map文件
+
 ## 编写自定义 loader
 
-webpack loader 是用于编译源文件为目标文件，
+- webpack loader 是用于编译源文件为目标文件
+- 执行顺序为从左到右（从下到上）
+- 导出 `loader` 函数，也可添加 `patch` 方法（类似 koa 的洋葱模型）
+  - 配置 loaders ['loader1', 'loader2']
+  - 执行顺序 **loader1.patch** => **loader2.patch** => **loader2.loader** => **loader1.loader**
+  
 
 ### babel-loader
 
@@ -135,7 +162,9 @@ module.exports = loader;
 shift + 空格
 ```
 
--  Error: EPERM: operation not permitted, lstat
+-  插件缓存问题，导致无法编译
+
+**报错信息**：Error: EPERM: operation not permitted
 
 ```bash
 npm cache clean --force

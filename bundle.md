@@ -391,5 +391,3 @@ export default {
 - `webpackIgnore: true` 忽略该异步代码的打包，不会输出，原封不动的出现在入口文件中，没有解析
 - `webpackPrefetch: true` 启用预抓取功能，浏览器空闲时发起请求，不执行
 - `webpackPreload: true` 启用预加载，当前页面解析需要
-- `webpack`
-
