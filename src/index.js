@@ -4,11 +4,19 @@
 const btn = document.querySelector('#btn');
 
 btn.addEventListener('click', () => {
-  import(/* webpackChunkName: 'info' */'./info');
+  import(
+    /* webpackChunkName: 'info' */
+    /* webpackPrefetch: true */
+    './info'
+  );
 });
 
 btn.addEventListener('click', () => {
-  import(/* webpackChunkName: 'title' */'./title');
+  import(
+    /* webpackChunkName: 'title' */
+    /* webpackPreload: true */
+    './title'
+  );
 });
 
 // Promise.resolve('error').finally(() => console.log('finally'));
