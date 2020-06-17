@@ -41,6 +41,15 @@
 
 **inline：** 将.map作为DataURI嵌入，不单独生成.map文件
 
+### 编译时间比对
+
+devtool 类别 | 时间 
+- | - 
+`none` | 
+`eval` | 2818ms
+`source-map` |  2837ms 配有 bundle.js.map，且 bundle.js 中添加 `//# sourceMappingURL=main.js.map`
+
+
 ## 编写自定义 loader
 
 - webpack loader 是用于编译源文件为目标文件

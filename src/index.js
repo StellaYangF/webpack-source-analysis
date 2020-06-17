@@ -1,5 +1,15 @@
 // import './css/index.less';
-import Person from './decorator';
+// import Person from './decorator';
+
+const btn = document.querySelector('#btn');
+
+btn.addEventListener('click', () => {
+  import(/* webpackChunkName: 'info' */'./info');
+});
+
+btn.addEventListener('click', () => {
+  import(/* webpackChunkName: 'title' */'./title');
+});
 
 // Promise.resolve('error').finally(() => console.log('finally'));
 

@@ -10,7 +10,7 @@ module.exports = {
     browser: true,
     node: true,
   },
-  ignorePatterns: ['dist/**/*', 'node_modules/**/*'],
+  ignorePatterns: ['dist/**/*', 'node_modules/**/*', 'history'],
   rules: {
     indent: ['error', 2],
     semi: ['error', 'always'],

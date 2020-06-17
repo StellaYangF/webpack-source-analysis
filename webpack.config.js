@@ -1,29 +1,31 @@
 const path = require('path');
 const cssnano = require('cssnano');
-
-const resolve = (filename) => path.resolve(__dirname, filename);
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const resolve = (filename) => path.resolve(__dirname, filename);
 
 module.exports = {
   entry: {
     main: resolve('src/index.js'),
     // reg: resolve('src/reg.js'),
   },
+
   output: {
     path: resolve('dist'),
     filename: '[name].js',
   },
+
   devServer: {
     contentBase: resolve('dist'),
     host: 'localhost',
     compress: true,
     port: 8080,
   },
+
   optimization: {
     minimizer: [
       new TerserWebpackPlugin({
@@ -36,6 +38,7 @@ module.exports = {
       }),
     ],
   },
+
   module: {
     rules: [
       {
@@ -91,6 +94,7 @@ module.exports = {
       },
     ],
   },
+
   plugins: [
     new MiniCssExtractPlugin({
       // filename: '[name][hash:8].css',
@@ -111,5 +115,5 @@ module.exports = {
     }),
     // new HardSourceWebpackPlugin(),
   ],
-  // devtool: 'none',
+  devtool: 'source-map', // 'eval'
 };
