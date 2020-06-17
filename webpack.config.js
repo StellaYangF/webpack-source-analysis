@@ -40,14 +40,15 @@ module.exports = {
     rules: [
       {
         test: /\.js(x?)$/,
+        exclude: /node_modules/,
         use: [
           'babel-loader',
           {
             loader: 'eslint-loader',
-            enforce: 'pre',
-            include: [resolve('src')],
             options: {
-              fix: 'true',
+              enforce: 'pre',
+              include: [resolve('src')],
+              fix: true,
             },
           },
         ],

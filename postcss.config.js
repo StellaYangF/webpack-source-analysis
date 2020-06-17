@@ -1,5 +1,5 @@
-const { HotModuleReplacementPlugin } = require("webpack");
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
-  plugins: [ require('autoprefixer') ],
-}
+  plugins: [autoprefixer],
+};
