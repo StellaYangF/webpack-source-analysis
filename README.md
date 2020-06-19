@@ -328,42 +328,39 @@ module.exports = loader;
 
 ```
 
-## Bug Records
+## 打包前清除目录
 
-### 输入法全角和半角的切换
-**解决**：
+### 依赖包 clean-webpack-plugin
+
 ```bash
-shift + 空格
+npm i clean-webpack-plugin -D
 ```
 
-### 插件缓存问题，导致无法编译
+### 配置
 
-**报错信息**：Error: EPERM: operation not permitted
-**解决**：
-```bash
-npm cache clean --force
-```
+webpack.config.js
 
-### 使用 expose-loader 暴露全局库 lodash，浏览器运行显示 global 未定义
-
-**报错信息**：Uncaught ReferenceError: global is not defined
-
-**解决**：去掉 module.noParse 匹配库
 ```js
-{
-  module: {
-    // 去掉下面这行代码即可解决
-    // noParse: /lodash/
-  }
-}
+plugins: [
+  new CleanWebpackPlugin({
+    cleanOnceBeforeBuildPatterns: ['**/*', '!**/assets'],
+  }),
+]
 ```
+
+> 小提示：数组元素字符串 `!` 排除某个文件或目录
+
+## 服务器代理
+
+webpack 选项属性 `devServer` 可配置相关开发服务器，其本质就是起了一个 `express` 服务，内部配置了静态资源访问路径
 
 ## 总结
 
 ### webpack 常用插件
 
 1. [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin)
-  清除打包目录下的文件
+    - 打包前清空目录
+    - `cleanOnceBeforeBuildPatterns` 数组形式，`**/*` 清除某个路径，`!**/dll**` 不清除某个路径
 2. [html-webpack-plugin](https://webpack.js.org/plugins/html-webpack-plugin/) 
   使用自己的 html 模板文件
 3. [html-webpack-externals-plugin](https://www.npmjs.com/package/html-webpack-externals-plugin)
@@ -380,4 +377,6 @@ npm cache clean --force
 8. [webpack.ProvidePlugin]
 9. [webpack.BannerPlugin](https://webpack.js.org/plugins/banner-plugin/) 为每个产出的代码块顶部添加商标
     - 输出文件如 `/*! xx 旅游 */`
-10. [copy-webpack-plugin]()
+10. [copy-webpack-plugin](https://webpack.js.org/plugins/copy-webpack-plugin/)
+    拷贝文件或目录
+11. []

@@ -1,5 +1,12 @@
-import './test';
-import _ from 'lodash';
+import './index.less';
+import axios from 'axios';
 
-console.log(_.join(['a', 'b', 'c'], '@'));
-console.log('33334');
+(async () => {
+  try {
+    const result = await axios('/api');
+    // eslint-disable-next-line no-console
+    console.log(result);
+  } catch (e) {
+    console.log(e);
+  }
+})();

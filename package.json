@@ -63,6 +63,7 @@
     "url-loader": "^4.1.0",
     "webpack": "^4.41.3",
     "webpack-cli": "^3.3.10",
+    "webpack-dev-middleware": "^3.7.2",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.2"
   },
@@ -79,6 +80,8 @@
   "dependencies": {
     "@babel/runtime": "^7.10.2",
     "@babel/runtime-corejs2": "^7.10.2",
-    "core-js": "^3.6.5"
+    "axios": "^0.19.2",
+    "core-js": "^3.6.5",
+    "express": "^4.17.1"
   }
 }

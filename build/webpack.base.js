@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const resolve = (filename) => path.resolve(__dirname, filename);
 
@@ -72,7 +73,7 @@ module.exports = {
       // minify: true,
     }),
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['**/*'],
+      cleanOnceBeforeBuildPatterns: ['**/*', '!**/dll'],
     }),
     // 无需引入，直接使用自动添加到当前模块的上下文
     // new webpack.ProvidePlugin({
@@ -88,6 +89,15 @@ module.exports = {
     // banner
     new webpack.BannerPlugin({
       banner: '乡聚旅游',
+    }),
+    // copy
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: resolve('../src/assets'),
+          to: resolve('../dist/assets'),
+        },
+      ],
     }),
   ],
   stats: 'normal', // 日志生成模式
