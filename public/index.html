@@ -3,16 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <% for(var css in htmlWebpackPlugin.files.css) { %>
-    <link href='<%= htmlWebpackPlugin.files.css[css] %>' rel='stylesheet'>
-  <% } %>
   <title>Home</title>
 </head>
 <body>
-  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id maxime consequatur ducimus quam libero sequi modi placeat, ea nemo similique fugiat aut, consequuntur iste facere, perferendis reiciendis nulla alias eveniet?</p>
-  <button id='btn'>async import title</button>
-  <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-    <script src='<%= htmlWebpackPlugin.files.chunks[chunk].entry %>'></script>
-  <% } %>
+  <!-- CDN 加速 外链 -->
+  <!-- <script src='https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js'></script> -->
 </body>
 </html>

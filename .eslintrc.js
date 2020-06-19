@@ -17,5 +17,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [1, { devDependencies: true }],
     'no-param-reassign': 1,
     'no-unused-vars': 1,
+    'import/no-webpack-loader-syntax': 1,
+    'import/no-unresolved': 1,
   },
 };

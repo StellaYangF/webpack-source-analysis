@@ -1,25 +1,5 @@
-// import './css/index.less';
-// import Person from './decorator';
+import './test';
+import _ from 'lodash';
 
-const btn = document.querySelector('#btn');
-
-btn.addEventListener('click', () => {
-  import(
-    /* webpackChunkName: 'info' */
-    /* webpackPrefetch: true */
-    './info'
-  );
-});
-
-btn.addEventListener('click', () => {
-  import(
-    /* webpackChunkName: 'title' */
-    /* webpackPreload: true */
-    './title'
-  );
-});
-
-// Promise.resolve('error').finally(() => console.log('finally'));
-
-const set = new Set([1, 2, 3, 4, 2, 4]);
-console.log(set);
+console.log(_.join(['a', 'b', 'c'], '@'));
+console.log('33334');
