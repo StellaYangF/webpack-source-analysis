@@ -27,3 +27,35 @@ npm cache clean --force
   }
 }
 ```
+
+### dev-server 代理到 node 服务
+
+无法成功，在 node 中可添加一个 logger 中间件，记录请求的 url 解决问题
+
+```js
+const express = require('express');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpack = require('webpack');
+const webpackOptions = require('./build/webpack.dev');
+
+const app = express();
+
+// logger 日志中间件
+const logger = (req,res,next) => {
+  console.log(req.url);
+  next();
+}
+
+app.use(logger);
+
+app.get('/users', (req, res) => {
+  console.log(req.url);
+  res.json({
+    name: 'stella',
+    age: 18,
+  });
+});
+
+app.listen(3000);
+
+```
